@@ -54,9 +54,9 @@ main()
 &nbsp &nbsp &nbsp  Programs will always look for the most recent instance of the variable with the same name as the program executes the code. <br>
 &nbsp &nbsp &nbsp  If there are no local variables available, the program will look for the global one. If the global one is not found, the compiler will trigger a compiler error. <br>
 <br>
-&nbsp + It is dynamically scoped because the program is able to look for the most recent instance of the variable with the same name as the program executes the code. <br>
+&nbsp + It is dynamically scoped because the program is able to search for the most recent instance of the variable with the same name as the program executes the code. <br>
 &nbsp &nbsp &nbsp  There may exist multiple local variables with the same name, it is possible because we have scopes to manage the lifetime of the local variables. <br>
-&nbsp &nbsp &nbsp  dynamicScoped is a macro that adds code to a function. When we print out 'i' in the "dynamicScoped" block the program looks for the <br>
+&nbsp &nbsp &nbsp  dynamicScoped is a macro that adds code to a function. When we print out 'i' in the "dynamicScoped" block the program searches for the <br>
 &nbsp &nbsp &nbsp  nearest instance of the local variable 'i' outside the 'dynamicScoped' scope, or a global variable if there aren't any local variables named 'i' in the function. <br>
 <br>
 &nbsp Click <a href="index.html">here</a> to return to the main page.
