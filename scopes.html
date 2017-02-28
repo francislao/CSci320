@@ -1,0 +1,65 @@
+<html>
+<header>
+<title>CSci320 Programing Languages Laboratory 6 Scoping (simple.html)</title>
+<link rel="stylesheet" type="text/css" href="cplusplus-snippet.css">
+</header>
+<body>
+<style>
+body {
+    background-color: white;
+}
+</style>
+
+<center><span style="font-size:20px">[ <span style="color:blue; font-size:18px">scopes.cpp</span> ]</span></center> <br>
+    
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+<var>int</var> i=1;
+<var>void</var> staticScoped(<var>int</var> x);
+<dfn>#define dynamicScoped(x)	{ cout &lt;&lt;"dynamicScoped("&lt;&lt;x&lt;&lt;") i= "&lt;&lt; i&lt;&lt;endl; }</dfn>
+main()
+{
+	cout &lt;&lt; <kbd>"Global i ="</kbd> &lt;&lt; i &lt;&lt; endl;
+	<var>int</var> i=2;
+	cout &lt;&lt; <kbd>"Main i ="</kbd> &lt;&lt; i &lt;&lt; endl;
+
+	{<cite>//inner block</cite>
+	<var>int</var> i=3;
+	cout &lt;&lt;<kbd>"Inner i ="</kbd> &lt;&lt; i &lt;&lt; endl;
+	staticScoped(1);
+	dynamicScoped(1);
+	}<cite>//inner block</cite>
+
+	cout &lt;&lt; <kbd>"Outer i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	staticScoped(2);
+	dynamicScoped(2);
+}<cite>//end main()</cite>
+<var>void</var> staticScoped(<var>int</var> x){ cout &lt;&lt;<kbd>"staticScoped("</kbd>&lt;&lt;x&lt;&lt;<kbd>") i= "</kbd>&lt;&lt; i&lt;&lt;endl; }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+<br>
+&nbsp <b>scopes.cpp</b> <br>
+&nbsp + Note that dynamicScoped(x) is a macro which contains block of code. <br>
+&nbsp &nbsp &nbsp   staticScoped(int x) is actually a function. <br>
+&nbsp &nbsp &nbsp   In the function staticScoped(int x), the function is trying to print out the value of 'i'. <br>
+&nbsp &nbsp &nbsp   But there are not any local variables 'i' in the function, so it will pick up the global variable 'i' instead. The result is that the function staticScoped(x) always prints out '1'. <br>
+&nbsp &nbsp &nbsp   When we use dynamicScoped(x) in a function, we actually create some code in the function. <br>
+&nbsp &nbsp &nbsp   When we use staticScoped(x) in a function, we are invoking the function staticScoped(int x). <br> 
+<br>
+&nbsp + It is statically scoped because local variables don't automatically carry from a function to another function. <br>
+&nbsp &nbsp &nbsp  That means if we declare "int i=2;" in main() the staticScoped function will not recognize any variable "int i=2;" when called because "int i=2;" is a local variable <br>
+&nbsp &nbsp &nbsp for the function main() only. <br>
+&nbsp &nbsp &nbsp  To be honest, every function is actually a block of code that separates from others, meaning that local variables declared in a function belong to this function only. <br>
+&nbsp &nbsp &nbsp  Programs will always look for the most recent instance of the variable with the same name as the program executes the code. <br>
+&nbsp &nbsp &nbsp  If there are no local variables available, the program will look for the global one. If the global one is not found, the compiler will trigger a compiler error. <br>
+<br>
+&nbsp + It is dynamically scoped because the program is able to look for the most recent instance of the variable with the same name as the program executes the code. <br>
+&nbsp &nbsp &nbsp  There may exist multiple local variables with the same name, it is possible because we have scopes to manage the lifetime of the local variables. <br>
+&nbsp &nbsp &nbsp  dynamicScoped is a macro that adds code to a function. When we prints out 'i' in the "dynamicScoped" block the program looks for the <br>
+&nbsp &nbsp &nbsp  nearest instance of the local variable 'i' outside the 'dynamicScoped' scope, or a global variable if there aren't any local variables. <br>
+<br>
+&nbsp Click <a href="index.html">here</a> to return to the main page.
+
+</body> </html>
+

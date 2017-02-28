@@ -1,0 +1,67 @@
+<html>
+<header>
+<title>CSci320 Programing Languages Laboratory 6 Scoping (simple.html)</title>
+<link rel="stylesheet" type="text/css" href="cplusplus-snippet.css">
+</header>
+<body>
+<style>
+body {
+    background-color: white;
+}
+</style>
+
+<center><span style="font-size:20px">[ <span style="color:blue; font-size:18px">simple2.cpp</span> ]</span></center> <br>
+    
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+<var>int</var> i=1;
+main()
+{
+	cout &lt;&lt; <kbd>"i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	<var>int</var> i=2;
+	cout &lt;&lt; <kbd>"i="</kbd> &lt;&lt; i &lt;&lt; endl;
+
+	{<cite>//inner block</cite>
+	<var>int</var> i=3;
+	cout &lt;&lt;<kbd>"  i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	cout &lt;&lt;<kbd>"  i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	}<cite>//inner block</cite>
+	cout &lt;&lt; <kbd>"i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	{<cite>//inner block 2</cite>
+	<var>int</var> i=4;
+	cout &lt;&lt;<kbd>"  i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	}<cite>//inner block 2</cite>
+
+	cout &lt;&lt; <kbd>"i="</kbd> &lt;&lt; i &lt;&lt; endl;
+}<cite>//end main() </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+<p>
+&nbsp <b>simple2.cpp</b> <br>
+&nbsp There are some interesting things about how scoping affects the program execution. <br>
+<br>
+&nbsp + There is a global variable 'int i=1;'. When you print out 'i' in main but no local variables 'i' are declared yet, the program prints 1. <br>
+&nbsp + After declaring the local variable 'int i=2;' When you print out 'i' again the program prints 2 because local variables have higher precedences over global variables by default. <br>
+&nbsp + When we do some scoping (inner block), we can override previously declared local variables that initially lie outside the inner block. <br>
+&nbsp   There we have "int i=3;" which temporarily overrides the local variable 'int i=2;' outside the inner block. <br>
+&nbsp   When we print 'i' two times, the program chooses the most recent instance of 'i' local variable. (which is "int i=3;") <br>
+&nbsp   Note that you have to do scoping to override a previously declared local variable, otherwise it will result in a compiler error (variable redefinition). <br>
+<br>  
+&nbsp + When the inner block ends and you print out 'i' again, the result is "int i=2;". <br>
+&nbsp   The inner block ends and it can be said that all variables declared in the block nolonger exist. <br>
+&nbsp   Meaning that only local variables declared in the scope exist within the scope. <br>
+&nbsp   When the program finishes executing the code in a scope we nolonger consider the existence of the scope and all local variables within. <br>
+&nbsp   Therefore "int i=3;" no longer exists, so program chooses the most recent instance of 'i' local variable (which is 'int i=2;'). <br>
+<br>
+&nbsp + We can do some scoping to temporarily override previously declared (local or global variable) outside the scope. <br>
+&nbsp   Meaning that we can again declare another 'i' variable in the inner block 2 ("int i=4;") <br>
+&nbsp   When we print 'i', the program chooses the most recent instance of 'i' local variable. (which is "int i=4;") <br>
+&nbsp   When the inner block 2 ends, we can safely say the most recently declared 'i' variable "int i=4;" is destroyed since the local variable lies within inner block 2. <br>
+&nbsp   When we print out 'i' again, the first local variable 'int i=2;' is used. The program already finished executing the inner block 2 so we will not consider any local variables within it. <br>
+&nbsp   Since 'int i=2;' is a general local variable which does not belong to any particular local scopes the variable lives for the rest of the function. <br>
+<br>
+&nbsp Click <a href="index.html">here</a> to return to the main page.
+
+</body> </html>
+

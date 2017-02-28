@@ -1,0 +1,46 @@
+<html>
+<header>
+<title>CSci320 Programing Languages Laboratory 6 Scoping (simple.html)</title>
+<link rel="stylesheet" type="text/css" href="cplusplus-snippet.css">
+</header>
+<body>
+<style>
+body {
+    background-color: white;
+}
+</style>
+
+<center><span style="font-size:20px">[ <span style="color:blue; font-size:18px">simple.cpp</span> ]</span></center> <br>
+    
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+<var>int</var> i=1;
+main()
+{
+	cout &lt;&lt; <kbd>"i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	i=2;
+	cout &lt;&lt; <kbd>"i="</kbd> &lt;&lt; i &lt;&lt; endl;
+
+	{<cite>//inner block</cite>
+	i=3;
+	cout &lt;&lt;<kbd>"  i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	   {<cite>//inner inner block</cite>
+		i=4;
+		cout &lt;&lt;<kbd>"    i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	   }<cite>//inner inner block</cite>
+	cout &lt;&lt;<kbd>"  i="</kbd> &lt;&lt; i &lt;&lt; endl;
+	}<cite>//inner block</cite>
+
+	cout &lt;&lt; <kbd>"i="</kbd> &lt;&lt; i &lt;&lt; endl;
+}<cite>//end main() </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+
+<br>
+&nbsp simple.cpp : Nothing happens in particular when scoping is used. The program runs normally.
+<br><br>
+&nbsp Click <a href="index.html">here</a> to return to the main page.
+
+</body> </html>
+
